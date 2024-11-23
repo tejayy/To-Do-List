@@ -1,13 +1,25 @@
 import check from "../assets/circle-check-solid.svg";
-import notCheck from "../assets/xmark-solid.svg";
 import remove from "../assets/trash-solid.svg";
+import notTick from "../assets/circle-regular.svg";
 
-const TodoItems = ({text, id, isCompleted, deleteTodo}) => {
+// eslint-disable-next-line react/prop-types
+const TodoItems = ({text, id, isCompleted, deleteTodo, toggle}) => {
   return (
     <div className="flex items-center my-3 gap-2">
-      <div className="flex flex-1 items-center cursor-pointer ">
-        <img className="w-7" src={check} alt="" />
-        <p className="text-slate-700 ml-4 text-[17px]">{text}</p>
+      <div
+        onClick={() => {
+          toggle(id);
+        }}
+        className="flex flex-1 items-center cursor-pointer "
+      >
+        <img className="w-7" src={isCompleted ? check : notTick} />
+        <p
+          className={`text-slate-700 ml-4 text-[17px] decoration-slate-500 ${
+            isCompleted ? "line-through" : ""
+          }`}
+        >
+          {text}
+        </p>
       </div>
       <img
         onClick={() => {

@@ -1,4 +1,4 @@
-import {useRef, useState} from "react";
+import {useEffect, useRef, useState} from "react";
 import todo_icon from "../assets/calendar-plus-solid.svg";
 import TodoItems from "./TodoItems";
 
@@ -32,9 +32,14 @@ const Todo = () => {
         if (todo.id === id) {
           return {...todo, isCompleted: !todo.isCompleted};
         }
+        return todo;
       });
     });
   };
+
+  useEffect(() => {
+    console.log(todoList);
+  }, [todoList]);
 
   return (
     <div className="bg-white place-self-center w-11/12 max-w-md flex flex-col p-7 min-h-[550px] rounded-xl">
@@ -68,6 +73,7 @@ const Todo = () => {
               id={item.id}
               isCompleted={item.isCompleted}
               deleteTodo={deleteTodo}
+              toggle={toggle}
             />
           );
         })}
